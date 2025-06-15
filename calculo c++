@@ -1,0 +1,17 @@
+#include <iostream>
+
+int main() {
+    int suma = 825;
+    int resta = 122;
+    
+    int x = (suma + resta) / 2;
+    int y = (suma - resta) / 2;
+    
+    std::cout << "El primer número es: " << x << std::endl;
+    std::cout << "El segundo número es: " << y << std::endl;
+    std::cout << "adios" << std::endl;
+    
+    return 0;
+}
+
+
