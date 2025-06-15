@@ -1,0 +1,47 @@
+#include <iostream>
+#include <cmath>
+
+// Función a integrar (ejemplo: x^2)
+double f(double x) {
+    return x * x;
+}
+
+// Método de Simpson para aproximar la integral definida
+double simpson(double a, double b, int n) {
+    double h = (b - a) / n;
+    double sum = f(a) + f(b);
+
+    for (int i = 1; i < n; ++i) {
+        double x = a + i * h;
+        if (i % 2 == 0) {
+            sum += 2 * f(x);
+        } else {
+            sum += 4 * f(x);
+        }
+    }
+
+    return (h / 3) * sum;
+}
+
+int main() {
+    double a, b; // Límites de integración
+    int n;       // Número de subintervalos (debe ser par)
+
+    std::cout << "Introduce el límite inferior de la integral: ";
+    std::cin >> a;
+    std::cout << "Introduce el límite superior de la integral: ";
+    std::cin >> b;
+    std::cout << "Introduce el número de subintervalos (debe ser par): ";
+    std::cin >> n;
+
+    if (n % 2 != 0) {
+        std::cout << "El número de subintervalos debe ser par." << std::endl;
+        return 1;
+    }
+
+    double integral = simpson(a, b, n);
+
+    std::cout << "El valor aproximado de la integral es: " << integral << std::endl;
+
+    return 0;
+}
