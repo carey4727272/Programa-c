@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+void tablaSinPunteros() {
+    int n;
+    clock_t inicio = clock();
+
+    printf("\nNúmero: ");
+    scanf("%d", &n);
+    for(int i = 1; i <= 10; i++)
+        printf("%d x %d = %d\n", n, i, n * i);
+
+    printf("Ciclos de reloj: %.2f\n", (double)(clock() - inicio));
+}
+
+void tablaConPunteros() {
+    int n, *ptr = &n;
+    printf("\nNúmero: ");
+    scanf("%d", ptr);
+    for(int i = 1; i <= 10; i++)
+        printf("%d x %d = %d\n", *ptr, i, (*ptr) * i);
+}
+
+void sistemaPOST() {
+    int cant;
+    float total = 0;
+
+    do {
+        printf("\nCantidad de productos (1-5): ");
+        scanf("%d", &cant);
+    } while(cant < 1 || cant > 5);
+
+    // Reservar memoria dinámica
+    char (*nombres)[30] = malloc(cant * sizeof(*nombres));
+    float *precios = malloc(cant * sizeof(float));
+
+    for(int i = 0; i < cant; i++) {
+        printf("Producto %d nombre: ", i+1);
+        scanf("%s", nombres[i]);
+        printf("Precio: ");
+        scanf("%f", &precios[i]);
+        total += precios[i];
+    }
+
+    printf("\n--- TICKET ---\n");
+    for(int i = 0; i < cant; i++)
+        printf("%-15s $%.2f\n", nombres[i], precios[i]);
+    printf("TOTAL:         $%.2f\n", total);
+
+    // Liberar memoria
+    free(nombres);
+    free(precios);
+}
+
+int main() {
+    int op;
+    do {
+        printf("\n--- MENÚ ---\n1. Tabla sin punteros\n2. Tabla con punteros\n3. Sistema POST\n4. Salir\nOpción: ");
+        scanf("%d", &op);
+        switch(op) {
+            case 1: tablaSinPunteros(); break;
+            case 2: tablaConPunteros(); break;
+            case 3: sistemaPOST(); break;
+            case 4: printf("Saliendo...\n"); break;
+            default: printf("Opción inválida\n");
+        }
+    } while(op != 4);
+    return 0;
+}
