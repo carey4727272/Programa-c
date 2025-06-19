@@ -1,0 +1,36 @@
+#include <stdio.h>
+
+int main() {
+    char nombre[50];
+    float activos, pasivos, capital;
+
+    // Pedir nombre
+    printf("Ingrese su nombre: ");
+    fgets(nombre, sizeof(nombre), stdin);
+
+    // Pedir valores del balance
+    printf("Ingrese el total de activos: $");
+    scanf("%f", &activos);
+
+    printf("Ingrese el total de pasivos: $");
+    scanf("%f", &pasivos);
+
+    // Calcular capital contable
+    capital = activos - pasivos;
+
+    // Mostrar el balance general
+    printf("\n--- BALANCE GENERAL ---\n");
+    printf("Nombre: %s", nombre);
+    printf("Activos:  $%.2f\n", activos);
+    printf("Pasivos: $%.2f\n", pasivos);
+    printf("Capital: $%.2f\n", capital);
+
+    // Verificar equilibrio del balance
+    if (activos == pasivos + capital) {
+        printf("El balance general está en equilibrio.\n");
+    } else {
+        printf("¡Atención! El balance no cuadra correctamente.\n");
+    }
+
+    return 0;
+}
