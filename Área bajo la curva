@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+// Declaración de la función que quieres integrar
+float funcion(float x) {
+    return x * x;  // f(x) = x^2
+}
+
+int main() {
+    float a, b;     // Límites de integración
+    int n;          // Número de trapecios
+    float h, x, area = 0;
+
+    printf("Calculadora de área bajo la curva usando el método del trapecio\n");
+    printf("Función: f(x) = x^2\n");
+
+    // Entrada de datos
+    printf("Ingrese el límite inferior (a): ");
+    scanf("%f", &a);
+    printf("Ingrese el límite superior (b): ");
+    scanf("%f", &b);
+    printf("Ingrese el número de trapecios (n): ");
+    scanf("%d", &n);
+
+    // Cálculo del ancho de cada subintervalo
+    h = (b - a) / n;
+
+    // Aplicación de la fórmula del trapecio
+    area = funcion(a) + funcion(b); // extremos
+    for (int i = 1; i < n; i++) {
+        x = a + i * h;
+        area += 2 * funcion(x);
+    }
+
+    area = (h / 2) * area;
+
+    // Mostrar resultado
+    printf("El área aproximada bajo la curva entre %.2f y %.2f es: %.4f\n", a, b, area);
+
+    return 0;
+}
