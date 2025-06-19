@@ -1,0 +1,35 @@
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char nombre[50];
+    int edad;
+    char direccion[100];
+
+    printf("Ingresa tu nombre: ");
+    fgets(nombre, sizeof(nombre), stdin);
+    nombre[strcspn(nombre, "\
+")] = 0;  // Eliminar el salto de línea
+
+    printf("Ingresa tu edad: ");
+    scanf("%d", &edad);
+    getchar(); // Consumir el salto de línea después de scanf
+
+    printf("Ingresa tu dirección: ");
+    fgets(direccion, sizeof(direccion), stdin);
+    direccion[strcspn(direccion, "\
+")] = 0;  // Eliminar el salto de línea
+
+    printf("\
+Datos ingresados:\
+");
+    printf("Nombre: %s\
+", nombre);
+    printf("Edad: %d\
+", edad);
+    printf("Dirección: %s\
+", direccion);
+
+    return 0;
+}
